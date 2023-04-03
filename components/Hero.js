@@ -1,7 +1,8 @@
 import { Image } from "@chakra-ui/next-js"
 import {
+  Box,
   Button,
-  Container,
+  Flex,
   Heading,
   Highlight,
   Stack,
@@ -11,11 +12,22 @@ import React from "react"
 
 const Hero = () => {
   return (
-    <Container py={8} height={{ base: "80%" }}>
+    <Flex
+      py={{ base: 20, md: 10 }}
+      px={{ base: 5, md: 500 }}
+      height={{ base: "50vh" }}
+      maxW="calc(100vw - 1px)"
+    >
       {/* CTA Blurb */}
-      <Stack spacing={2} direction={{ base: "column", sm: "row" }}>
-        <StackItem>
-          <Heading as="h1" size="2xl" mb={8}>
+      <Stack spacing={2} direction={{ base: "column" }}>
+        <StackItem order={{ base: 2, md: 1 }}>
+          <Heading
+            as="h1"
+            size="2xl"
+            mb={8}
+            noOfLines={{ base: 6, md: 3 }}
+            maxWidth={{ base: "100%" }}
+          >
             Empower your customers and{" "}
             <Highlight
               query="free your business"
@@ -32,15 +44,17 @@ const Hero = () => {
           </Button>
         </StackItem>
         <StackItem>
-          <Image
-            src="/CreditCardAtm.png"
-            alt="JASS ATM Hero"
-            width={500}
-            height={500}
-          />
+          <Box>
+            <Image
+              src="/CreditCardAtm.png"
+              alt="JASS ATM Hero"
+              width={500}
+              height={320}
+            />
+          </Box>
         </StackItem>
       </Stack>
-    </Container>
+    </Flex>
   )
 }
 
