@@ -8,7 +8,7 @@ const Services = () => {
       px={{ base: 5, md: 20 }}
       height={{ base: "calc(100% + 2rem", md: "calc(100% + 4rem)" }}
       direction="column"
-      align={{ base: "start", sm: "center" }}
+      align="center"
       justify="center"
       id="services"
     >
