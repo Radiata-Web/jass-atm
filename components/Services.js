@@ -33,7 +33,7 @@ const Services = () => {
           {SERVICES.map((service) => (
             <Box
               key={service.name}
-              px={6}
+              px={8}
               py={8}
               borderRadius="xl"
               maxW="100%"

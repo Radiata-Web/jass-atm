@@ -10,7 +10,7 @@ const Company = () => {
       id="company"
       direction={{ base: "column", md: "row" }}
       fontFamily="Inter"
-      align={{ base: "start", sm: "center" }}
+      align="center"
       justify="center"
       bg="gray.50"
     >
@@ -28,7 +28,7 @@ const Company = () => {
           width={1000}
           w="100%"
           h="auto"
-          mb={8}
+          mb={{ base: 4, md: 0 }}
         />
 
         {/* Text */}
@@ -60,7 +60,6 @@ const Company = () => {
               as="a"
               colorScheme="brand"
               size="lg"
-              mb={8}
               fontFamily="Inter"
               href="#contact"
             >
