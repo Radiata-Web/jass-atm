@@ -13,20 +13,29 @@ import React from "react"
 const Hero = () => {
   return (
     <Flex
-      py={{ base: 20, md: 10 }}
-      px={{ base: 5, md: 500 }}
-      height={{ base: "50vh" }}
-      maxW="calc(100vw - 1px)"
+      py={{ base: 10, md: 20 }}
+      px={{ base: 5, md: 20 }}
+      justify="center"
+      align="center"
     >
       {/* CTA Blurb */}
-      <Stack spacing={2} direction={{ base: "column" }}>
-        <StackItem order={{ base: 2, md: 1 }}>
+      <Stack
+        spacing={{ base: 0, lg: 20 }}
+        direction={{ base: "column", md: "row" }}
+        align="center"
+        maxW="1600px"
+      >
+        {/* Text */}
+        <StackItem
+          maxW={{ base: "100%", lg: "50%" }}
+          justify="center"
+        >
           <Heading
             as="h1"
             size="2xl"
-            mb={8}
-            noOfLines={{ base: 6, md: 3 }}
-            maxWidth={{ base: "100%" }}
+            mb={14}
+            lineHeight="1.1"
+            fontFamily="Inter"
           >
             Empower your customers and{" "}
             <Highlight
@@ -39,19 +48,31 @@ const Hero = () => {
           </Heading>
 
           {/* CTA Button */}
-          <Button colorScheme="brand" size="lg" mb={8}>
+          <Button
+            as="a"
+            colorScheme="brand"
+            size="lg"
+            mb={8}
+            fontFamily="Inter"
+            href="#services"
+          >
             See what we offer
           </Button>
         </StackItem>
-        <StackItem>
-          <Box>
-            <Image
-              src="/CreditCardAtm.png"
-              alt="JASS ATM Hero"
-              width={500}
-              height={320}
-            />
-          </Box>
+        <StackItem
+          w="50%"
+          h="100%"
+        >
+          {/* Hero Image */}
+          <Image
+            src="/CreditCardAtm.png"
+            alt="JASS ATM Hero"
+            width={500}
+            height={500}
+            display={{ base: "none", lg: "block" }}
+            float="right"
+            mr={14}
+          />
         </StackItem>
       </Stack>
     </Flex>
