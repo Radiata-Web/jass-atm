@@ -1,7 +1,7 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
-import { Inter } from "next/font/google"
+import localFont from "next/font/local"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = localFont({ src: "./Inter.ttf" })
 
 export default function App({ Component, pageProps }) {
   const theme = extendTheme({
