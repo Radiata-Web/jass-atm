@@ -1,13 +1,4 @@
-import {
-  Flex,
-  Heading,
-  Box,
-  SimpleGrid,
-  Text,
-  Button,
-  UnorderedList,
-  ListItem,
-} from "@chakra-ui/react"
+import { Flex, Heading, Box, SimpleGrid, Text, Button } from "@chakra-ui/react"
 import { Image } from "@chakra-ui/next-js"
 
 const Machines = () => {
@@ -54,7 +45,7 @@ const Machines = () => {
 
               {/* MOBILE LOGO GRID */}
               <SimpleGrid
-                columns={{ base: 1, md: 2 }}
+                columns={{ base: 2, md: 2 }}
                 spacing={{ base: 10, md: 20 }}
                 my={10}
                 mb={12}
@@ -64,11 +55,11 @@ const Machines = () => {
               >
                 {/* Image */}
                 <Image
-                  src="/genmega-logo.jpg"
+                  src="/genmega-logo.png"
                   alt="GenMega logo"
                   height={250}
                   width={1000}
-                  w="70%"
+                  w="80%"
                   h="auto"
                 />
                 <Image
@@ -76,7 +67,7 @@ const Machines = () => {
                   alt="Hyosung logo"
                   height={250}
                   width={1000}
-                  w="70%"
+                  w="80%"
                   h="auto"
                   transform="translateY(10px)"
                 />
@@ -97,7 +88,8 @@ const Machines = () => {
 
           {/* Two column grid with Images */}
           <SimpleGrid
-            columns={{ base: 1, md: 2 }}
+            columns={{ base: 2, md: 2 }}
+            rows={{ base: 2, md: 1 }}
             spacing={{ base: 10, md: 20 }}
             my={10}
             mb={12}
@@ -107,7 +99,7 @@ const Machines = () => {
           >
             {/* Image */}
             <Image
-              src="/genmega-logo.jpg"
+              src="/genmega-logo.png"
               alt="GenMega logo"
               height={250}
               width={1000}

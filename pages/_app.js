@@ -1,6 +1,7 @@
 import "@fontsource/inter/400.css"
 import "@fontsource/inter/700.css"
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+import Navbar from "@/components/Navbar"
 
 export default function App({ Component, pageProps }) {
   const theme = extendTheme({
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <ChakraProvider theme={theme}>
+        <Navbar />
         <Component {...pageProps} />
       </ChakraProvider>
     </>

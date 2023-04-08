@@ -1,5 +1,4 @@
 import Head from "next/head"
-import Navbar from "@/components/Navbar"
 import Hero from "@/components/Hero"
 import Company from "@/components/Company"
 import Services from "@/components/Services"
@@ -26,7 +25,6 @@ export default function Home() {
         />
       </Head>
       <main>
-        <Navbar />
         <Hero />
         <Company />
         <Services />

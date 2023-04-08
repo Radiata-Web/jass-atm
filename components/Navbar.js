@@ -40,22 +40,45 @@ export default function WithSubnavigation() {
           <IconButton
             onClick={onToggle}
             icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+              isOpen ? (
+                <CloseIcon
+                  w={3}
+                  h={3}
+                />
+              ) : (
+                <HamburgerIcon
+                  w={5}
+                  h={5}
+                />
+              )
             }
             variant={"ghost"}
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+        <Flex
+          flex={{ base: 1 }}
+          justify={{ base: "center", md: "start" }}
+        >
           <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
-            <Image src="/logo.webp" alt="JASS ATM Logo" height={9} width={9} />
+            <Link href="/">
+              <Image
+                src="/jass-logo.svg"
+                alt="JASS ATM Logo"
+                height={9}
+                width={9}
+              />
+            </Link>
           </Text>
 
-          <Flex display={{ base: "none", md: "flex" }} ml={10}>
+          <Flex
+            display={{ base: "none", md: "flex" }}
+            ml={10}
+          >
             <DesktopNav />
           </Flex>
         </Flex>
@@ -82,7 +105,10 @@ export default function WithSubnavigation() {
         </Stack>
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity>
+      <Collapse
+        in={isOpen}
+        animateOpacity
+      >
         <MobileNav />
       </Collapse>
     </Box>
@@ -95,10 +121,17 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800")
 
   return (
-    <Stack direction={"row"} spacing={4}>
+    <Stack
+      direction={"row"}
+      spacing={4}
+      align="center"
+    >
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
+          <Popover
+            trigger={"hover"}
+            placement={"bottom-start"}
+          >
             <PopoverTrigger>
               <Link
                 p={2}
@@ -126,7 +159,10 @@ const DesktopNav = () => {
               >
                 <Stack>
                   {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
+                    <DesktopSubNav
+                      key={child.label}
+                      {...child}
+                    />
                   ))}
                 </Stack>
               </PopoverContent>
@@ -148,7 +184,10 @@ const DesktopSubNav = ({ label, href }) => {
       rounded={"md"}
       _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
     >
-      <Stack direction={"row"} align={"center"}>
+      <Stack
+        direction={"row"}
+        align={"center"}
+      >
         <Box>
           <Text
             transition={"all .3s ease"}
@@ -171,7 +210,10 @@ const MobileNav = () => {
       display={{ md: "none" }}
     >
       {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
+        <MobileNavItem
+          key={navItem.label}
+          {...navItem}
+        />
       ))}
     </Stack>
   )
@@ -181,7 +223,10 @@ const MobileNavItem = ({ label, children, href }) => {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
-    <Stack spacing={4} onClick={children && onToggle}>
+    <Stack
+      spacing={4}
+      onClick={children && onToggle}
+    >
       <Flex
         py={2}
         as={Link}
@@ -200,7 +245,11 @@ const MobileNavItem = ({ label, children, href }) => {
         </Text>
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
+      <Collapse
+        in={isOpen}
+        animateOpacity
+        style={{ marginTop: "0!important" }}
+      >
         <Stack
           mt={2}
           pl={4}
@@ -211,7 +260,11 @@ const MobileNavItem = ({ label, children, href }) => {
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <Link
+                key={child.label}
+                py={2}
+                href={child.href}
+              >
                 {child.label}
               </Link>
             ))}
@@ -228,11 +281,11 @@ const NAV_ITEMS = [
   },
   {
     label: "About",
-    href: "#company",
+    href: "/#company",
   },
   {
     label: "Services",
-    href: "#services",
+    href: "/#services",
   },
   {
     label: "ATMs",
