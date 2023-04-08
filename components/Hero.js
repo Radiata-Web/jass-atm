@@ -13,7 +13,7 @@ import React from "react"
 const Hero = () => {
   return (
     <Flex
-      py={{ base: 10, md: 20 }}
+      py={{ base: 16, md: 20 }}
       px={{ base: 5, md: 20 }}
       justify="center"
       align="center"
@@ -55,6 +55,7 @@ const Hero = () => {
             mb={8}
             fontFamily="Inter"
             href="#services"
+            width={{ base: "100%", lg: "auto" }}
           >
             See what we offer
           </Button>

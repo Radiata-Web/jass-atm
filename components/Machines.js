@@ -4,7 +4,7 @@ import { Image } from "@chakra-ui/next-js"
 const Machines = () => {
   return (
     <Flex
-      py={{ base: 10, md: 20 }}
+      py={{ base: 16, md: 20 }}
       px={{ base: 5, md: 20 }}
       direction="column"
       align="center"
@@ -35,7 +35,7 @@ const Machines = () => {
               {/* Blurb */}
               <Text
                 color="gray.600"
-                mb={4}
+                mb={12}
               >
                 Jass ATM Sales & Service is a family-owned company based in
                 Jacksonville, Florida focused on providing reliable and
@@ -43,7 +43,7 @@ const Machines = () => {
                 grown into one of the largest ATM companies in the Southeast.
               </Text>
 
-              {/* MOBILE LOGO GRID */}
+              {/* MOBILE VIEW: ATM Logo Grid */}
               <SimpleGrid
                 columns={{ base: 2, md: 2 }}
                 spacing={{ base: 10, md: 20 }}
@@ -77,19 +77,19 @@ const Machines = () => {
               <Button
                 as="a"
                 colorScheme="brand"
+                variant="outline"
                 size="lg"
-                fontFamily="Inter"
                 href="#contact"
+                width={{ base: "100%", md: "auto" }}
               >
-                See more details
+                View Machines
               </Button>
             </Box>
           </Flex>
 
-          {/* Two column grid with Images */}
+          {/* DESKTOP VIEW: ATM logo grid*/}
           <SimpleGrid
-            columns={{ base: 2, md: 2 }}
-            rows={{ base: 2, md: 1 }}
+            columns={{ base: 1, md: 2 }}
             spacing={{ base: 10, md: 20 }}
             my={10}
             mb={12}

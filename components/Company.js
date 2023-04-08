@@ -5,11 +5,10 @@ import React from "react"
 const Company = () => {
   return (
     <Flex
-      py={{ base: 10, md: 10 }}
+      py={{ base: 16, md: 10 }}
       px={{ base: 5, md: 20 }}
       id="company"
       direction={{ base: "column", md: "row" }}
-      fontFamily="Inter"
       align="center"
       justify="center"
       bg="gray.50"
@@ -39,7 +38,6 @@ const Company = () => {
               as="h2"
               size="xl"
               mb={4}
-              fontFamily="Inter"
             >
               About Jass ATM
             </Heading>
@@ -59,9 +57,10 @@ const Company = () => {
             <Button
               as="a"
               colorScheme="brand"
+              variant="outline"
               size="lg"
-              fontFamily="Inter"
               href="#contact"
+              width={{ base: "100%", md: "auto" }}
             >
               Get in contact
             </Button>

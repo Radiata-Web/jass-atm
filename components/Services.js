@@ -4,13 +4,14 @@ import { Flex, Heading, Text, Stack, Box, SimpleGrid } from "@chakra-ui/react"
 const Services = () => {
   return (
     <Flex
-      py={{ base: 10, md: 20 }}
+      py={{ base: 16, md: 20 }}
       px={{ base: 5, md: 20 }}
       height={{ base: "calc(100% + 2rem", md: "calc(100% + 4rem)" }}
       direction="column"
       align="center"
       justify="center"
       id="services"
+      maxWidth="1600px"
     >
       <Box>
         <Heading
@@ -37,7 +38,7 @@ const Services = () => {
               py={8}
               borderRadius="xl"
               maxW="100%"
-              shadow="xl"
+              shadow={{ base: "md", md: "xl" }}
               borderWidth="1px"
               borderColor="gray.100"
             >
