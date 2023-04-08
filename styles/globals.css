@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Inter";
+  src: url("../pages/Inter.ttf");
+  font-style: medium;
+  font-weight: normal;
+  font-display: swap;
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
