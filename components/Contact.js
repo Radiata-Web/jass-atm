@@ -1,4 +1,4 @@
-import { Image } from "@chakra-ui/next-js"
+import { Image, Link } from "@chakra-ui/next-js"
 import {
   Flex,
   Box,
@@ -14,7 +14,7 @@ import ContactForm from "./ContactForm"
 const Contact = () => {
   return (
     <Flex
-      py={{ base: 16, md: 20 }}
+      py={{ base: 16, md: 20, lg: 28 }}
       px={{ base: 5, md: 20 }}
       direction="column"
       align="center"
@@ -64,7 +64,12 @@ const Contact = () => {
                     width={10}
                   />
 
-                  <Text fontSize="lg">(800) 676-6838</Text>
+                  <Link
+                    href="tel:8006766838"
+                    _hover={{ color: "brand.500" }}
+                  >
+                    <Text fontSize="lg">(800) 676-6838</Text>
+                  </Link>
                 </HStack>
 
                 {/* Email */}
@@ -79,7 +84,12 @@ const Contact = () => {
                     width={10}
                   />
 
-                  <Text fontSize="lg">support@jassatm.com</Text>
+                  <Link
+                    href="mailto:support@jassatm.com"
+                    _hover={{ color: "brand.500" }}
+                  >
+                    <Text fontSize="lg">support@jassatm.com</Text>
+                  </Link>
                 </HStack>
 
                 {/* Address */}
@@ -95,10 +105,16 @@ const Contact = () => {
                   />
 
                   <Box>
-                    <Text fontSize="lg">
-                      8200 Cypress Plaza Drive, Suite 402
-                    </Text>
-                    <Text fontSize="lg">Jacksonville, FL 32256</Text>
+                    <Link
+                      href="https://goo.gl/maps/ih3cZRXhZ4ayWH9GA"
+                      target="_blank"
+                      _hover={{ color: "brand.500" }}
+                    >
+                      <Text fontSize="lg">
+                        8200 Cypress Plaza Drive, Suite 402
+                      </Text>
+                      <Text fontSize="lg">Jacksonville, FL 32256</Text>
+                    </Link>
                   </Box>
                 </HStack>
               </Stack>

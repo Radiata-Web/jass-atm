@@ -4,7 +4,7 @@ import { Image } from "@chakra-ui/next-js"
 const Machines = () => {
   return (
     <Flex
-      py={{ base: 16, md: 20 }}
+      py={{ base: 16, md: 20, lg: 28 }}
       px={{ base: 5, md: 20 }}
       direction="column"
       align="center"

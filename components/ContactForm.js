@@ -75,7 +75,7 @@ const ContactForm = () => {
     <Box
       mt={{ base: 12, md: 0 }}
       padding={8}
-      shadow="xl"
+      shadow={{ base: "md", md: "xl" }}
       borderRadius="xl"
       borderWidth="1px"
       borderColor="gray.100"

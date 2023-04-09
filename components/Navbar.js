@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
 import { Link, Image } from "@chakra-ui/next-js"
+import { scroll } from "framer-motion"
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure()
@@ -32,7 +33,7 @@ export default function WithSubnavigation() {
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         py={{ base: 2 }}
-        px={{ base: 4 }}
+        px={{ base: 4, xl: 2 }}
         align={"center"}
         maxWidth="1600px"
       >
@@ -124,7 +125,6 @@ export default function WithSubnavigation() {
 const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200")
   const linkHoverColor = useColorModeValue("gray.800", "white")
-  const popoverContentBgColor = useColorModeValue("white", "gray.800")
 
   return (
     <Stack
@@ -153,58 +153,10 @@ const DesktopNav = () => {
                 {navItem.label}
               </Link>
             </PopoverTrigger>
-
-            {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={"xl"}
-                bg={popoverContentBgColor}
-                p={4}
-                rounded={"xl"}
-                minW={"sm"}
-              >
-                <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav
-                      key={child.label}
-                      {...child}
-                    />
-                  ))}
-                </Stack>
-              </PopoverContent>
-            )}
           </Popover>
         </Box>
       ))}
     </Stack>
-  )
-}
-
-const DesktopSubNav = ({ label, href }) => {
-  return (
-    <Link
-      href={href}
-      role={"group"}
-      display={"block"}
-      p={2}
-      rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
-    >
-      <Stack
-        direction={"row"}
-        align={"center"}
-      >
-        <Box>
-          <Text
-            transition={"all .3s ease"}
-            _groupHover={{ color: "pink.400" }}
-            fontWeight={500}
-          >
-            {label}
-          </Text>
-        </Box>
-      </Stack>
-    </Link>
   )
 }
 

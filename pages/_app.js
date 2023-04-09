@@ -3,6 +3,7 @@ import "@fontsource/inter/700.css"
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3"
 import Navbar from "@/components/Navbar"
+import Footer from "@/components/Footer"
 
 export default function App({ Component, pageProps }) {
   const theme = extendTheme({
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }) {
       <ChakraProvider theme={theme}>
         <Navbar />
         <Component {...pageProps} />
+        <Footer />
       </ChakraProvider>
     </>
   )

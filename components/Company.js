@@ -5,7 +5,7 @@ import React from "react"
 const Company = () => {
   return (
     <Flex
-      py={{ base: 16, md: 10 }}
+      py={{ base: 16, md: 20, lg: 28 }}
       px={{ base: 5, md: 20 }}
       id="company"
       direction={{ base: "column", md: "row" }}
@@ -18,20 +18,11 @@ const Company = () => {
         spacing={{ base: 2, md: 20 }}
         maxWidth="1600px"
       >
-        {/* Image */}
-        <Image
-          src="/atm-graffiti-wide.jpg"
-          alt="Image: About JASS ATM"
-          borderRadius="xl"
-          height={250}
-          width={1000}
-          w="100%"
-          h="auto"
-          mb={{ base: 4, md: 0 }}
-        />
-
         {/* Text */}
-        <Flex align="center">
+        <Flex
+          align="center"
+          order={{ base: 2, md: 1 }}
+        >
           <Box>
             {/* About Heading */}
             <Heading
@@ -39,7 +30,7 @@ const Company = () => {
               size="xl"
               mb={4}
             >
-              About Jass ATM
+              Company
             </Heading>
 
             {/* Blurb */}
@@ -66,6 +57,19 @@ const Company = () => {
             </Button>
           </Box>
         </Flex>
+
+        {/* Image */}
+        <Image
+          src="/atm-graffiti-wide.jpg"
+          alt="Image: About JASS ATM"
+          borderRadius="xl"
+          height={250}
+          width={1000}
+          w="100%"
+          h="auto"
+          mb={{ base: 4, md: 0 }}
+          order={{ base: 1, md: 2 }}
+        />
       </SimpleGrid>
     </Flex>
   )

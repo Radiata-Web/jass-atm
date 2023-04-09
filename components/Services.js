@@ -4,7 +4,7 @@ import { Flex, Heading, Text, Stack, Box, SimpleGrid } from "@chakra-ui/react"
 const Services = () => {
   return (
     <Flex
-      py={{ base: 16, md: 20 }}
+      py={{ base: 16, md: 20, lg: 28 }}
       px={{ base: 5, md: 20 }}
       height={{ base: "calc(100% + 2rem", md: "calc(100% + 4rem)" }}
       direction="column"
@@ -41,6 +41,11 @@ const Services = () => {
               shadow={{ base: "md", md: "xl" }}
               borderWidth="1px"
               borderColor="gray.100"
+              transition="300ms ease-in-out"
+              cursor="default"
+              _hover={{
+                borderColor: "gray.300",
+              }}
             >
               <Stack
                 mb={4}
