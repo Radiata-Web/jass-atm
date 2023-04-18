@@ -26,21 +26,14 @@ const Footer = () => {
           {/* Logo left */}
           <Box>
             <Stack align="center">
-              <Stack
-                direction="row"
-                align="center"
-                spacing={4}
-              >
+              <Stack direction="row" align="center" spacing={4}>
                 <Image
                   src="/jass-logo.png"
                   alt="Jass ATM Logo"
                   height={50}
                   width={50}
                 />
-                <Text
-                  fontSize="2xl"
-                  fontWeight="bold"
-                >
+                <Text fontSize="2xl" fontWeight="bold">
                   Jass ATM
                 </Text>
               </Stack>
@@ -56,29 +49,20 @@ const Footer = () => {
               align="center"
               justify="center"
             >
-              <Link
-                href="/"
-                _hover={{ color: "brand.500" }}
-              >
+              <Link href="/" _hover={{ color: "brand.500" }}>
                 Home
               </Link>
-              <Link
-                href="/#company"
-                _hover={{ color: "brand.500" }}
-              >
+              <Link href="/#company" _hover={{ color: "brand.500" }}>
                 Company
               </Link>
-              <Link
-                href="/#services"
-                _hover={{ color: "brand.500" }}
-              >
+              <Link href="/#services" _hover={{ color: "brand.500" }}>
                 Services
               </Link>
-              <Link
-                href="/#contact"
-                _hover={{ color: "brand.500" }}
-              >
+              <Link href="/#contact" _hover={{ color: "brand.500" }}>
                 Contact
+              </Link>
+              <Link href="/atms" _hover={{ color: "brand.500" }}>
+                ATMs
               </Link>
             </Stack>
           </Box>

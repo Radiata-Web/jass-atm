@@ -8,6 +8,10 @@ import {
   HStack,
   Text,
   Stack,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react"
 import ContactForm from "./ContactForm"
 
@@ -32,31 +36,18 @@ const Contact = () => {
           <Flex align="center">
             <Box>
               {/* Contact Heading */}
-              <Heading
-                as="h2"
-                size="xl"
-                mb={4}
-              >
+              <Heading as="h2" size="xl" mb={4}>
                 Learn more about what we can do for{" "}
-                <Highlight
-                  query="you"
-                  styles={{ color: "brand.500" }}
-                >
+                <Highlight query="you" styles={{ color: "brand.500" }}>
                   you
                 </Highlight>
                 .
               </Heading>
 
               {/* Business Information */}
-              <Stack
-                spacing={{ base: 4, md: 8 }}
-                mt={12}
-              >
+              <Stack spacing={{ base: 4, md: 8 }} mt={12}>
                 {/* Phone */}
-                <HStack
-                  spacing={4}
-                  align="center"
-                >
+                <HStack spacing={4} align="center">
                   <Image
                     src="/icons/phone.svg"
                     alt="Phone Icon"
@@ -64,19 +55,13 @@ const Contact = () => {
                     width={10}
                   />
 
-                  <Link
-                    href="tel:8006766838"
-                    _hover={{ color: "brand.500" }}
-                  >
+                  <Link href="tel:8006766838" _hover={{ color: "brand.500" }}>
                     <Text fontSize="lg">(800) 676-6838</Text>
                   </Link>
                 </HStack>
 
                 {/* Email */}
-                <HStack
-                  spacing={4}
-                  align="center"
-                >
+                <HStack spacing={4} align="center">
                   <Image
                     src="/icons/mail.svg"
                     alt="Email Icon"
@@ -85,18 +70,15 @@ const Contact = () => {
                   />
 
                   <Link
-                    href="mailto:support@jassatm.com"
+                    href="mailto:sales@jassatm.com"
                     _hover={{ color: "brand.500" }}
                   >
-                    <Text fontSize="lg">support@jassatm.com</Text>
+                    <Text fontSize="lg">sales@jassatm.com</Text>
                   </Link>
                 </HStack>
 
                 {/* Address */}
-                <HStack
-                  spacing={4}
-                  align="center"
-                >
+                <HStack spacing={4} align="center">
                   <Image
                     src="/icons/pin.svg"
                     alt="Map Pin Icon"
@@ -124,6 +106,21 @@ const Contact = () => {
           {/* Contact Form */}
           <ContactForm />
         </SimpleGrid>
+
+        <Alert status="info" mt={12} borderRadius={8}>
+          <AlertIcon />
+          <AlertDescription>
+            Kindly direct any support requests to{" "}
+            <strong>
+              <Link href="mailto:support@jassatm.com">support@jassatm.com</Link>
+            </strong>{" "}
+            or call our office at{" "}
+            <strong>
+              <Link href="tel:8006766838">(800) 676-6838</Link>
+            </strong>
+            .
+          </AlertDescription>
+        </Alert>
       </Box>
     </Flex>
   )

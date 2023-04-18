@@ -12,6 +12,7 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Heading,
 } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
 import { Link, Image } from "@chakra-ui/next-js"
@@ -47,44 +48,38 @@ export default function WithSubnavigation() {
               onClick={onToggle}
               icon={
                 isOpen ? (
-                  <CloseIcon
-                    w={3}
-                    h={3}
-                  />
+                  <CloseIcon w={3} h={3} />
                 ) : (
-                  <HamburgerIcon
-                    w={5}
-                    h={5}
-                  />
+                  <HamburgerIcon w={5} h={5} />
                 )
               }
               variant={"ghost"}
               aria-label={"Toggle Navigation"}
             />
           </Flex>
-          <Flex
-            flex={{ base: 1 }}
-            justify={{ base: "center", md: "start" }}
-          >
-            <Text
-              textAlign={useBreakpointValue({ base: "center", md: "left" })}
-              fontFamily={"heading"}
-              color={useColorModeValue("gray.800", "white")}
-            >
-              <Link href="/">
-                <Image
-                  src="/jass-logo.svg"
-                  alt="JASS ATM Logo"
-                  height={9}
-                  width={9}
-                />
+          <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+            <Flex>
+              <Link
+                href="/"
+                _hover={{
+                  textDecoration: "none",
+                }}
+              >
+                <Flex direction="row" align="center" gap={3}>
+                  <Image
+                    src="/jass-logo.svg"
+                    alt="JASS ATM Logo"
+                    height={9}
+                    width={9}
+                  />
+                  <Heading size="md" color="gray.800">
+                    Jass ATM
+                  </Heading>
+                </Flex>
               </Link>
-            </Text>
+            </Flex>
 
-            <Flex
-              display={{ base: "none", md: "flex" }}
-              ml={10}
-            >
+            <Flex display={{ base: "none", md: "flex" }} ml={10}>
               <DesktopNav />
             </Flex>
           </Flex>
@@ -112,10 +107,7 @@ export default function WithSubnavigation() {
         </Flex>
       </Box>
 
-      <Collapse
-        in={isOpen}
-        animateOpacity
-      >
+      <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
     </Box>
@@ -127,17 +119,10 @@ const DesktopNav = () => {
   const linkHoverColor = useColorModeValue("gray.800", "white")
 
   return (
-    <Stack
-      direction={"row"}
-      spacing={4}
-      align="center"
-    >
+    <Stack direction={"row"} spacing={4} align="center">
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
-          <Popover
-            trigger={"hover"}
-            placement={"bottom-start"}
-          >
+          <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
               <Link
                 p={2}
@@ -168,10 +153,7 @@ const MobileNav = () => {
       display={{ md: "none" }}
     >
       {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem
-          key={navItem.label}
-          {...navItem}
-        />
+        <MobileNavItem key={navItem.label} {...navItem} />
       ))}
     </Stack>
   )
@@ -181,10 +163,7 @@ const MobileNavItem = ({ label, children, href }) => {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
-    <Stack
-      spacing={4}
-      onClick={children && onToggle}
-    >
+    <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
         as={Link}
@@ -203,11 +182,7 @@ const MobileNavItem = ({ label, children, href }) => {
         </Text>
       </Flex>
 
-      <Collapse
-        in={isOpen}
-        animateOpacity
-        style={{ marginTop: "0!important" }}
-      >
+      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
         <Stack
           mt={2}
           pl={4}
@@ -218,11 +193,7 @@ const MobileNavItem = ({ label, children, href }) => {
         >
           {children &&
             children.map((child) => (
-              <Link
-                key={child.label}
-                py={2}
-                href={child.href}
-              >
+              <Link key={child.label} py={2} href={child.href}>
                 {child.label}
               </Link>
             ))}

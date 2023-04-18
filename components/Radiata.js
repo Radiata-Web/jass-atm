@@ -1,19 +1,25 @@
-const { Box, Text } = require("@chakra-ui/react")
+import { Image, Link } from "@chakra-ui/next-js"
+import { Text } from "@chakra-ui/react"
 
 const Radiata = () => {
   return (
-    <Box
-      bgGradient={"linear(to-tr, gray.900, gray.500)"}
+    <Link
+      href="https://radiataweb.com"
       px={3}
       py={1}
-      borderRadius="md"
-      borderWidth="1px"
-      borderColor="gray.900"
+      transition={"all 0.2s ease"}
+      target="_blank"
+      _hover={{
+        filter: "invert(1) brightness(0.35)",
+      }}
     >
-      <Text fontWeight="bold" color="white">
-        RW
-      </Text>
-    </Box>
+      <Image
+        src="/RW-Logo-Dark.svg"
+        alt="Radiata Web Logo"
+        height={42}
+        width={42}
+      />
+    </Link>
   )
 }
 

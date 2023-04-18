@@ -14,13 +14,7 @@ const Services = () => {
       maxWidth="1600px"
     >
       <Box>
-        <Heading
-          as="h2"
-          size="xl"
-          mb={4}
-          fontFamily="Inter"
-          textAlign="left"
-        >
+        <Heading as="h2" size="xl" mb={4} fontFamily="Inter" textAlign="left">
           Services
         </Heading>
 
@@ -60,12 +54,7 @@ const Services = () => {
                   mb={2}
                   mr={{ base: 0, md: 2 }}
                 />
-                <Heading
-                  as="h3"
-                  fontSize="26px"
-                  mb={2}
-                  fontFamily="Inter"
-                >
+                <Heading as="h3" fontSize="26px" mb={2} fontFamily="Inter">
                   {service.name}
                 </Heading>
               </Stack>
@@ -97,7 +86,7 @@ const SERVICES = [
   {
     name: "Cash Refills",
     description:
-      "Ensure your ATM never runs out of funds. We will refill your ATM with cash as needed for a small fee depending on how many ATMs you have, and the quantity of cash you need.",
+      "Ensure your ATM never runs out of funds. We will refill your ATM with cash as needed for a small fee depending on how many ATMs you have, and the quantity of cash you need. Available nationwide.",
     icon: "/icons/money.svg",
   },
   {
