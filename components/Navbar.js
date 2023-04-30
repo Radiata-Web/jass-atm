@@ -72,7 +72,11 @@ export default function WithSubnavigation() {
                     height={9}
                     width={9}
                   />
-                  <Heading size="md" color="gray.800">
+                  <Heading
+                    size="md"
+                    color="gray.800"
+                    display={{ base: "none", md: "block" }}
+                  >
                     Jass ATM
                   </Heading>
                 </Flex>

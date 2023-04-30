@@ -26,10 +26,7 @@ const Hero = () => {
         maxW="1600px"
       >
         {/* Text */}
-        <StackItem
-          maxW={{ base: "100%", lg: "50%" }}
-          justify="center"
-        >
+        <StackItem maxW={{ base: "100%", lg: "50%" }} justify="center">
           <Heading
             as="h1"
             size="2xl"
@@ -60,12 +57,10 @@ const Hero = () => {
             See what we offer
           </Button>
         </StackItem>
-        <StackItem
-          w="50%"
-          h="100%"
-        >
+        <StackItem w="50%" h="100%">
           {/* Hero Image */}
           <Image
+            priority={true}
             src="/CreditCardAtm.png"
             alt="JASS ATM Hero"
             width={500}

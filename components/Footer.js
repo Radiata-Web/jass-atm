@@ -19,7 +19,8 @@ const Footer = () => {
         <Flex
           justify="space-between"
           align="center"
-          direction="row"
+          direction={{ base: "column", md: "row" }}
+          gap={{ base: 8, md: 0 }}
           width="100%"
           maxW="1600px"
         >
@@ -48,6 +49,8 @@ const Footer = () => {
               color="gray.600"
               align="center"
               justify="center"
+              my={{ base: 4, md: 0 }}
+              fontSize={{ base: "sm", md: "md" }}
             >
               <Link href="/" _hover={{ color: "brand.500" }}>
                 Home
