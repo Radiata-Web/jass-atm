@@ -23,20 +23,12 @@ const Machines = () => {
           <Flex align="center">
             <Box order={{ base: 1, md: 2 }}>
               {/* About Heading */}
-              <Heading
-                as="h2"
-                size="xl"
-                mb={4}
-                fontFamily="Inter"
-              >
+              <Heading as="h2" size="xl" mb={4} fontFamily="Inter">
                 ATM Machines
               </Heading>
 
               {/* Blurb */}
-              <Text
-                color="gray.600"
-                mb={12}
-              >
+              <Text color="gray.600" mb={12}>
                 Jass ATM Sales & Service is a family-owned company based in
                 Jacksonville, Florida focused on providing reliable and
                 customer-forward services. With 20+ years of experience, we have
@@ -79,7 +71,7 @@ const Machines = () => {
                 colorScheme="brand"
                 variant="outline"
                 size="lg"
-                href="#contact"
+                href="/atms"
                 width={{ base: "100%", md: "auto" }}
               >
                 View Machines
