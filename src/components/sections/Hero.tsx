@@ -9,13 +9,13 @@ export default function Hero() {
       <div className="bg-linear-to-bl from-black/50 to-black">
         {/* Content Container */}
         <div className="grid gap-12 grid-cols-1 lg:grid-cols-2">
-          <div className="flex flex-col gap-12 max-w-[90%] xl:max-w-[60%] mx-auto py-12 md:py-24">
+          <div className="flex flex-col gap-12 max-w-[90%] xl:max-w-[60%] mx-auto py-16 md:py-24">
             {/* Content */}
             <div className="flex flex-col gap-4 max-w-4xl">
-              <p className="text-5xl leading-tight font-semibold text-white">
+              <p className="text-4xl leading-tight font-semibold text-white">
                 Reliable ATM Solutions for Businesses Across the Southeast.
               </p>
-              <p className="text-xl text-gray-300 max-w-3xl">
+              <p className="text-lg text-gray-300 max-w-3xl">
                 Jass ATM Sales & Service helps hotels, retailers, bars, and more
                 boost revenue with fully managed ATM programs, fast repairs, and
                 24/7 monitoring—without long‑term contracts or heavy fees.

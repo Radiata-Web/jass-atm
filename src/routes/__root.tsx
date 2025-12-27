@@ -3,9 +3,9 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import "@fontsource-variable/instrument-sans";
 
-import Header from "../components/Header";
-
 import appCss from "../styles.css?url";
+import NavMenu from "@/components/nav-menu";
+import NavBanner from "@/components/nav-banner";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -39,7 +39,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <Header />
+        <NavBanner />
+        <NavMenu />
+        {/* <Header /> */}
         {children}
         <TanStackDevtools
           config={{
