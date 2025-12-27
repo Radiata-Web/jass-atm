@@ -8,8 +8,8 @@ export default function Hero() {
       {/* Background overlay */}
       <div className="bg-linear-to-bl from-black/50 to-black">
         {/* Content Container */}
-        <div className="grid gap-12 grid-cols-1 lg:grid-cols-2">
-          <div className="flex flex-col gap-12 max-w-[90%] xl:max-w-[60%] mx-auto py-16 md:py-24">
+        <div className="grid gap-12 grid-cols-1 lg:grid-cols-2 max-w-[90%] xl:max-w-[60%] mx-auto">
+          <div className="flex flex-col gap-12 py-16 md:py-24">
             {/* Content */}
             <div className="flex flex-col gap-4 max-w-4xl">
               <p className="text-4xl leading-tight font-semibold text-white">
@@ -42,12 +42,12 @@ export default function Hero() {
           </div>
 
           {/* Illustration */}
-          <div className="items-center justify-center hidden lg:flex">
+          <div className="items-center hidden lg:flex">
             <img
               src="/figures/maintenance.svg"
               alt="Maintenance"
-              width={500}
-              className="mx-auto"
+              width={400}
+              className="ml-auto"
             />
           </div>
         </div>
