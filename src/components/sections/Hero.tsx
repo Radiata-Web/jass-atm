@@ -1,5 +1,5 @@
 import { Phone, Send } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 
 export default function Hero() {
