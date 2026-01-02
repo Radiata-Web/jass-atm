@@ -7,12 +7,12 @@ export default function NavBanner() {
         {/* Location */}
         <div className="flex items-center gap-1">
           <MapPin size={16} />
-          <p className="text-sm">Jacksonville, FL</p>
+          <p className="text-sm">Based in Jacksonville, FL</p>
         </div>
         {/* Phone */}
         <div className="flex items-center gap-1">
           <Phone size={16} />
-          <p className="text-sm">(800) 676-6838</p>
+          <p className="text-sm">Call us: (800) 676-6838</p>
         </div>
       </div>
     </div>
