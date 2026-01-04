@@ -1,0 +1,20 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Richardson",
+			"country": {
+				"code": "US",
+				"name": "United States"
+			},
+			"subdivision": {
+				"code": "TX",
+				"name": "Texas"
+			},
+			"timezone": "America/Chicago",
+			"latitude": 32.9482,
+			"longitude": -96.7297,
+			"postalCode": "75081"
+		},
+		"timestamp": 1766817120838
+	}
+}
