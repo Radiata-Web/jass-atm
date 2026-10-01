@@ -1,4 +1,3 @@
-import { Image, Link } from "@chakra-ui/next-js"
 import {
   Flex,
   Box,
@@ -10,8 +9,9 @@ import {
   Stack,
   Alert,
   AlertIcon,
-  AlertTitle,
   AlertDescription,
+  Image,
+  Link,
 } from "@chakra-ui/react"
 import ContactForm from "./ContactForm"
 

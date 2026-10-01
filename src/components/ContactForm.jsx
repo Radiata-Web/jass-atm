@@ -1,4 +1,3 @@
-import { sendContactForm } from "@/lib/api"
 import {
   Box,
   Button,
@@ -40,15 +39,30 @@ const ContactForm = () => {
     }))
 
   // Handle form submission
-  const onSubmit = async () => {
+  const onSubmit = async (e) => {
+    e.preventDefault()
+
     setState((prev) => ({
       ...prev,
       isLoading: true,
     }))
 
     try {
-      // Send form data
-      await sendContactForm(values)
+      const body = new URLSearchParams({
+        "form-name": "contact",
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        message: values.message,
+      }).toString()
+
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+      })
+
+      if (!res.ok) throw new Error("Failed to send message")
 
       // Reset form
       setTouched({})
@@ -73,6 +87,12 @@ const ContactForm = () => {
 
   return (
     <Box
+      as="form"
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      onSubmit={onSubmit}
       mt={{ base: 12, md: 0 }}
       padding={8}
       shadow={{ base: "md", md: "xl" }}
@@ -80,6 +100,22 @@ const ContactForm = () => {
       borderWidth="1px"
       borderColor="gray.100"
     >
+      <input type="hidden" name="form-name" value="contact" />
+      <Box
+        as="p"
+        position="absolute"
+        left="-10000px"
+        top="auto"
+        width="1px"
+        height="1px"
+        overflow="hidden"
+      >
+        <label>
+          Don’t fill this out if you’re human:{" "}
+          <input name="bot-field" tabIndex={-1} autoComplete="off" />
+        </label>
+      </Box>
+
       {/* Heading */}
       <Heading
         display={{ base: "block", md: "none" }}
@@ -190,9 +226,8 @@ const ContactForm = () => {
             !values.name || !values.email || !values.phone || !values.message
           }
           width={{ base: "100%", md: "auto" }}
-          isLoading={values.isLoading}
+          isLoading={isLoading}
           loadingText="Submitting"
-          onClick={onSubmit}
         >
           Send message
         </Button>

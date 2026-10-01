@@ -1,4 +1,3 @@
-import { Image } from "@chakra-ui/next-js"
 import {
   Box,
   Button,
@@ -6,9 +5,8 @@ import {
   Heading,
   Highlight,
   Stack,
-  StackItem,
+  Image,
 } from "@chakra-ui/react"
-import React from "react"
 
 const Hero = () => {
   return (
@@ -26,7 +24,7 @@ const Hero = () => {
         maxW="1600px"
       >
         {/* Text */}
-        <StackItem maxW={{ base: "100%", lg: "50%" }} justify="center">
+        <Box maxW={{ base: "100%", lg: "50%" }}>
           <Heading
             as="h1"
             size="2xl"
@@ -56,11 +54,10 @@ const Hero = () => {
           >
             See what we offer
           </Button>
-        </StackItem>
-        <StackItem w="50%" h="100%">
+        </Box>
+        <Box w="50%" h="100%">
           {/* Hero Image */}
           <Image
-            priority={true}
             src="/CreditCardAtm.png"
             alt="JASS ATM Hero"
             width={500}
@@ -69,7 +66,7 @@ const Hero = () => {
             float="right"
             mr={14}
           />
-        </StackItem>
+        </Box>
       </Stack>
     </Flex>
   )

@@ -1,5 +1,4 @@
-import { Image, Link } from "@chakra-ui/next-js"
-import { Flex, Box, Text, Stack, SimpleGrid, Spacer } from "@chakra-ui/react"
+import { Image, Link, Flex, Box, Text, Stack } from "@chakra-ui/react"
 import Radiata from "./Radiata"
 
 const Footer = () => {

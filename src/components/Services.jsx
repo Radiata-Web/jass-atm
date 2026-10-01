@@ -1,5 +1,4 @@
-import { Image } from "@chakra-ui/next-js"
-import { Flex, Heading, Text, Stack, Box, SimpleGrid } from "@chakra-ui/react"
+import { Flex, Heading, Text, Stack, Box, SimpleGrid, Image } from "@chakra-ui/react"
 
 const Services = () => {
   return (

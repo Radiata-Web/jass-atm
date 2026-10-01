@@ -8,15 +8,14 @@ import {
   Collapse,
   Popover,
   PopoverTrigger,
-  PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
   Heading,
+  Link,
+  Image,
 } from "@chakra-ui/react"
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
-import { Link, Image } from "@chakra-ui/next-js"
-import { scroll } from "framer-motion"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { Menu01Icon, Cancel01Icon } from "@hugeicons/core-free-icons"
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure()
@@ -47,11 +46,10 @@ export default function WithSubnavigation() {
             <IconButton
               onClick={onToggle}
               icon={
-                isOpen ? (
-                  <CloseIcon w={3} h={3} />
-                ) : (
-                  <HamburgerIcon w={5} h={5} />
-                )
+                <HugeiconsIcon
+                  icon={isOpen ? Cancel01Icon : Menu01Icon}
+                  size={isOpen ? 12 : 20}
+                />
               }
               variant={"ghost"}
               aria-label={"Toggle Navigation"}

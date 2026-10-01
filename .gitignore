@@ -8,12 +8,14 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
+# vite / tanstack
+/dist
+.tanstack
+.vinxi
 
 # production
 /build
+.netlify
 
 # misc
 .DS_Store

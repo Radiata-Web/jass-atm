@@ -1,6 +1,4 @@
-import { Image } from "@chakra-ui/next-js"
-import { Flex, Box, Button, SimpleGrid, Heading, Text } from "@chakra-ui/react"
-import React from "react"
+import { Flex, Box, Button, SimpleGrid, Heading, Text, Image } from "@chakra-ui/react"
 
 const Company = () => {
   return (

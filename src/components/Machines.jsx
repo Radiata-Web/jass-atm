@@ -1,5 +1,4 @@
-import { Flex, Heading, Box, SimpleGrid, Text, Button } from "@chakra-ui/react"
-import { Image } from "@chakra-ui/next-js"
+import { Flex, Heading, Box, SimpleGrid, Text, Button, Image } from "@chakra-ui/react"
 
 const Machines = () => {
   return (

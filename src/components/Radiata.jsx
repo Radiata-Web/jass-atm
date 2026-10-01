@@ -1,5 +1,4 @@
-import { Image, Link } from "@chakra-ui/next-js"
-import { Text, Stack } from "@chakra-ui/react"
+import { Image, Link, Text, Stack } from "@chakra-ui/react"
 
 const Radiata = () => {
   return (
