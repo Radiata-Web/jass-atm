@@ -13,5 +13,18 @@ export default defineConfig({
   ssr: {
     noExternal: ["posthog-js"],
   },
-  plugins: [tsconfigPaths(), tanstackStart(), netlify(), viteReact()],
+  plugins: [
+    tsconfigPaths(),
+    tanstackStart({
+      // Static marketing pages — serve from CDN, don't burn Netlify Functions.
+      prerender: {
+        enabled: true,
+        crawlLinks: true,
+        failOnError: true,
+      },
+    }),
+    netlify(),
+    viteReact(),
+  ],
 })
+
