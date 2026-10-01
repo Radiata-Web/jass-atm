@@ -15,3 +15,10 @@
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
+
+[[redirects]]
+from = "/ingest/*"
+to = "https://us.i.posthog.com/:splat"
+status = 200
+force = true
+host = "us.i.posthog.com"
