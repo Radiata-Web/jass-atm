@@ -8,5 +8,10 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  // posthog-js/react ships ESM without "type":"module", so Node treats named
+  // imports as CJS and blows up on Netlify SSR. Bundle it instead.
+  ssr: {
+    noExternal: ["posthog-js"],
+  },
   plugins: [tsconfigPaths(), tanstackStart(), netlify(), viteReact()],
 })
