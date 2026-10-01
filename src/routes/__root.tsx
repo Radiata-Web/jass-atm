@@ -4,14 +4,11 @@ import {
   createRootRoute,
   HeadContent,
   Scripts,
-  useRouterState,
 } from "@tanstack/react-router"
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { PostHogErrorBoundary, PostHogProvider } from "posthog-js/react"
-import { useEffect } from "react"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
-import * as gtag from "@/lib/gtag"
 import appCss from "@/styles/globals.css?url"
 import "@fontsource/inter/400.css"
 import "@fontsource/inter/700.css"
@@ -50,35 +47,11 @@ export const Route = createRootRoute({
       { rel: "icon", href: "/favicon.svg" },
       { rel: "stylesheet", href: appCss },
     ],
-    scripts: gtag.GA_TRACKING_ID
-      ? [
-          {
-            src: `https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`,
-            async: true,
-          },
-          {
-            children: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${gtag.GA_TRACKING_ID}', {
-                page_path: window.location.pathname,
-              });
-            `,
-          },
-        ]
-      : [],
   }),
   component: RootComponent,
 })
 
 function RootComponent() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname })
-
-  useEffect(() => {
-    gtag.pageview(pathname)
-  }, [pathname])
-
   const app = (
     <ChakraProvider theme={theme}>
       <Navbar />
