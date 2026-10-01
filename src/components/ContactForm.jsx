@@ -54,7 +54,9 @@ const ContactForm = () => {
       // FormData includes honeypot (bot-field) so Netlify can reject bots
       const body = new URLSearchParams(new FormData(e.currentTarget)).toString()
 
-      const res = await fetch("/", {
+      // POST to the static skeleton — "/" is caught by the SSR function and
+      // never reaches Netlify Forms (still returns 200, so the toast lied).
+      const res = await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body,
