@@ -13,9 +13,25 @@ import {
   Image,
   Link,
 } from "@chakra-ui/react"
+import { usePostHog } from "posthog-js/react"
+import { logPostHogInfo } from "../lib/posthog-logger.js"
 import ContactForm from "./ContactForm"
 
 const Contact = () => {
+  const posthog = usePostHog()
+
+  const trackContactMethod = (contactMethod, contactPurpose) => {
+    posthog?.capture("contact_method_selected", {
+      contact_method: contactMethod,
+      contact_purpose: contactPurpose,
+    })
+    logPostHogInfo(posthog, "contact method selected", {
+      event: "contact_method_selected",
+      contact_method: contactMethod,
+      contact_purpose: contactPurpose,
+    })
+  }
+
   return (
     <Flex
       py={{ base: 16, md: 20, lg: 28 }}
@@ -55,7 +71,11 @@ const Contact = () => {
                     width={10}
                   />
 
-                  <Link href="tel:8006766838" _hover={{ color: "brand.500" }}>
+                  <Link
+                    href="tel:8006766838"
+                    onClick={() => trackContactMethod("phone", "sales")}
+                    _hover={{ color: "brand.500" }}
+                  >
                     <Text fontSize="lg">(800) 676-6838</Text>
                   </Link>
                 </HStack>
@@ -71,6 +91,7 @@ const Contact = () => {
 
                   <Link
                     href="mailto:sales@jassatm.com"
+                    onClick={() => trackContactMethod("email", "sales")}
                     _hover={{ color: "brand.500" }}
                   >
                     <Text fontSize="lg">sales@jassatm.com</Text>
@@ -112,11 +133,21 @@ const Contact = () => {
           <AlertDescription>
             Kindly direct any support requests to{" "}
             <strong>
-              <Link href="mailto:support@jassatm.com">support@jassatm.com</Link>
+              <Link
+                href="mailto:support@jassatm.com"
+                onClick={() => trackContactMethod("email", "support")}
+              >
+                support@jassatm.com
+              </Link>
             </strong>{" "}
             or call our office at{" "}
             <strong>
-              <Link href="tel:8006766838">(800) 676-6838</Link>
+              <Link
+                href="tel:8006766838"
+                onClick={() => trackContactMethod("phone", "support")}
+              >
+                (800) 676-6838
+              </Link>
             </strong>
             .
           </AlertDescription>

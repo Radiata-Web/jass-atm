@@ -7,6 +7,7 @@ import {
   useRouterState,
 } from "@tanstack/react-router"
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+import { PostHogErrorBoundary, PostHogProvider } from "posthog-js/react"
 import { useEffect } from "react"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
@@ -14,6 +15,9 @@ import * as gtag from "@/lib/gtag"
 import appCss from "@/styles/globals.css?url"
 import "@fontsource/inter/400.css"
 import "@fontsource/inter/700.css"
+
+const posthogApiKey = import.meta.env.VITE_PUBLIC_POSTHOG_PROJECT_TOKEN
+const posthogHost = import.meta.env.VITE_PUBLIC_POSTHOG_HOST
 
 const theme = extendTheme({
   colors: {
@@ -75,13 +79,48 @@ function RootComponent() {
     gtag.pageview(pathname)
   }, [pathname])
 
+  const app = (
+    <ChakraProvider theme={theme}>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </ChakraProvider>
+  )
+
+  if (!posthogApiKey || !posthogHost) {
+    if (import.meta.env.DEV) {
+      const missingVariable = !posthogApiKey
+        ? "VITE_PUBLIC_POSTHOG_PROJECT_TOKEN"
+        : "VITE_PUBLIC_POSTHOG_HOST"
+      throw new Error(
+        `${missingVariable} variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once ${missingVariable} is configured`,
+      )
+    }
+
+    return <RootDocument>{app}</RootDocument>
+  }
+
   return (
     <RootDocument>
-      <ChakraProvider theme={theme}>
-        <Navbar />
-        <Outlet />
-        <Footer />
-      </ChakraProvider>
+      <PostHogProvider
+        apiKey={posthogApiKey}
+        options={{
+          api_host: posthogHost,
+          defaults: "2025-05-24",
+          capture_exceptions: true,
+          debug: import.meta.env.DEV,
+          logs: {
+            serviceName: "jass-atm-web",
+            environment: import.meta.env.MODE,
+          },
+        }}
+      >
+        <PostHogErrorBoundary
+          fallback={<main>Something went wrong. Please try again later.</main>}
+        >
+          {app}
+        </PostHogErrorBoundary>
+      </PostHogProvider>
     </RootDocument>
   )
 }

@@ -14,12 +14,15 @@ import {
 } from "@chakra-ui/react"
 
 import { useState } from "react"
+import { usePostHog } from "posthog-js/react"
+import { logPostHogInfo } from "../lib/posthog-logger.js"
 
 const initValues = { name: "", email: "", phone: "", message: "" }
 const initState = { values: initValues }
 
 const ContactForm = () => {
   const toast = useToast()
+  const posthog = usePostHog()
   const [state, setState] = useState(initState)
   const [touched, setTouched] = useState({})
   const { values, isLoading, error } = state
@@ -58,6 +61,12 @@ const ContactForm = () => {
       })
 
       if (!res.ok) throw new Error("Failed to send message")
+
+      posthog?.capture("contact_form_submitted")
+      logPostHogInfo(posthog, "contact form submission completed", {
+        event: "contact_form_submitted",
+        status: "success",
+      })
 
       // Reset form
       setTouched({})

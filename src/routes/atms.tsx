@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
+import { usePostHog } from "posthog-js/react"
+import { logPostHogInfo } from "../lib/posthog-logger.js"
 import {
   Flex,
   Box,
@@ -18,6 +20,22 @@ export const Route = createFileRoute("/atms")({
 })
 
 function Atms() {
+  const posthog = usePostHog()
+
+  const trackDocumentOpen = (atm, documentType) => {
+    posthog?.capture("atm_document_opened", {
+      atm_company: atm.company,
+      atm_model: atm.model,
+      document_type: documentType,
+    })
+    logPostHogInfo(posthog, "atm document opened", {
+      event: "atm_document_opened",
+      atm_company: atm.company,
+      atm_model: atm.model,
+      document_type: documentType,
+    })
+  }
+
   return (
     <Flex
       py={{ base: 16, md: 20 }}
@@ -86,6 +104,7 @@ function Atms() {
                   as="a"
                   href={atm.brochure}
                   target="_blank"
+                  onClick={() => trackDocumentOpen(atm, "brochure")}
                   rel="noreferrer"
                   colorScheme="brand"
                   rightIcon={
@@ -125,6 +144,7 @@ function Atms() {
                     bg="gray.700"
                     href={atm.manual}
                     target="_blank"
+                    onClick={() => trackDocumentOpen(atm, "manual")}
                     rel="noreferrer"
                     rightIcon={
                       <Image

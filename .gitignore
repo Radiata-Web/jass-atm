@@ -33,3 +33,4 @@ bun-debug.log*
 
 # vercel
 .vercel
+.env
