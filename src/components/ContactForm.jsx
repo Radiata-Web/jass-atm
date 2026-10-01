@@ -48,13 +48,8 @@ const ContactForm = () => {
     }))
 
     try {
-      const body = new URLSearchParams({
-        "form-name": "contact",
-        name: values.name,
-        email: values.email,
-        phone: values.phone,
-        message: values.message,
-      }).toString()
+      // FormData includes honeypot (bot-field) so Netlify can reject bots
+      const body = new URLSearchParams(new FormData(e.currentTarget)).toString()
 
       const res = await fetch("/", {
         method: "POST",
@@ -143,6 +138,7 @@ const ContactForm = () => {
             value={values.name}
             onChange={handleChange}
             onBlur={onBlur}
+            maxLength={100}
             errorBorderColor="red.300"
           />
           <FormErrorMessage>Please enter your name.</FormErrorMessage>
@@ -162,6 +158,7 @@ const ContactForm = () => {
             value={values.email}
             onChange={handleChange}
             onBlur={onBlur}
+            maxLength={254}
             errorBorderColor="red.300"
           />
           {/* Error handling message */}
@@ -185,6 +182,7 @@ const ContactForm = () => {
             onChange={handleChange}
             errorBorderColor="red.300"
             onBlur={onBlur}
+            maxLength={20}
           />
           <FormErrorMessage>
             Please enter a valid phone number.
@@ -206,6 +204,7 @@ const ContactForm = () => {
           value={values.message}
           onChange={handleChange}
           onBlur={onBlur}
+          maxLength={5000}
           errorBorderColor="red.300"
         />
         <FormErrorMessage>Please enter a message.</FormErrorMessage>
