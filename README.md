@@ -12,8 +12,8 @@ Family-owned ATM sales & service site (Jacksonville, FL).
 ## Develop
 
 ```bash
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
@@ -27,7 +27,7 @@ VITE_MEASUREMENT_ID=G-XXXXXXXX
 ## Build
 
 ```bash
-npm run build
+bun run build
 ```
 
 ## Netlify

@@ -1,9 +1,12 @@
 [build]
-  command = "npm run build"
+  command = "bun run build"
   publish = "dist/client"
 
+[build.environment]
+  BUN_VERSION = "1.4.2"
+
 [dev]
-  command = "npm run dev"
+  command = "bun run dev"
   port = 3000
   targetPort = 3000
 
