@@ -51,8 +51,16 @@ const ContactForm = () => {
     }))
 
     try {
-      // FormData includes honeypot (bot-field) so Netlify can reject bots
-      const body = new URLSearchParams(new FormData(e.currentTarget)).toString()
+      // Build body from controlled values so autofilled honeypot DOM values
+      // can't silently poison the submission (Netlify drops those with 200).
+      const body = new URLSearchParams({
+        "form-name": "contact",
+        "bot-field": "",
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        message: values.message,
+      }).toString()
 
       // POST to the static skeleton — "/" is caught by the SSR function and
       // never reaches Netlify Forms (still returns 200, so the toast lied).
@@ -63,6 +71,12 @@ const ContactForm = () => {
       })
 
       if (!res.ok) throw new Error("Failed to send message")
+
+      // Netlify Forms returns a Thank you page; SSR catch-alls return the app.
+      const text = await res.text()
+      if (!text.includes("Thank you")) {
+        throw new Error("Failed to send message")
+      }
 
       posthog?.capture("contact_form_submitted")
       logPostHogInfo(posthog, "contact form submission completed", {
@@ -107,20 +121,14 @@ const ContactForm = () => {
       borderColor="gray.100"
     >
       <input type="hidden" name="form-name" value="contact" />
-      <Box
-        as="p"
-        position="absolute"
-        left="-10000px"
-        top="auto"
-        width="1px"
-        height="1px"
-        overflow="hidden"
-      >
+      {/* display:none keeps autofill from filling the honeypot (off-screen
+          fields still get filled and Netlify silently rejects those). */}
+      <p style={{ display: "none" }} aria-hidden="true">
         <label>
           Don’t fill this out if you’re human:{" "}
           <input name="bot-field" tabIndex={-1} autoComplete="off" />
         </label>
-      </Box>
+      </p>
 
       {/* Heading */}
       <Heading
