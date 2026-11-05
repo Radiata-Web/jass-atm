@@ -25,11 +25,11 @@ const Contact = () => {
       justify="center"
       id="contact"
     >
-      <Box>
+      <Box w="100%" maxW="1600px">
         <SimpleGrid
-          templateColumns={{ base: "1fr", md: "1fr 2fr" }}
-          spacing={{ base: 2, md: 20 }}
-          maxWidth="1600px"
+          templateColumns={{ base: "1fr", lg: "minmax(0, 1fr) minmax(0, 2fr)" }}
+          spacing={{ base: 2, md: 12, lg: 20 }}
+          w="100%"
         >
           <Flex align="center">
             <Box>
