@@ -1,4 +1,3 @@
-import { Image, Link } from "@chakra-ui/next-js"
 import {
   Flex,
   Box,
@@ -10,8 +9,9 @@ import {
   Stack,
   Alert,
   AlertIcon,
-  AlertTitle,
   AlertDescription,
+  Image,
+  Link,
 } from "@chakra-ui/react"
 import ContactForm from "./ContactForm"
 
@@ -25,17 +25,14 @@ const Contact = () => {
       justify="center"
       id="contact"
     >
-      <Box>
+      <Box w="100%" maxW="1600px">
         <SimpleGrid
-          templateColumns={{ base: "1fr", md: "1fr 2fr" }}
-          spacing={{ base: 2, md: 20 }}
-          maxWidth="1600px"
-          justify="center"
+          templateColumns={{ base: "1fr", lg: "minmax(0, 1fr) minmax(0, 2fr)" }}
+          spacing={{ base: 2, md: 12, lg: 20 }}
+          w="100%"
         >
-          {/* Text & Business Information */}
           <Flex align="center">
             <Box>
-              {/* Contact Heading */}
               <Heading as="h2" size="xl" mb={4}>
                 Learn more about what we can do for{" "}
                 <Highlight query="you" styles={{ color: "brand.500" }}>
@@ -44,9 +41,7 @@ const Contact = () => {
                 .
               </Heading>
 
-              {/* Business Information */}
               <Stack spacing={{ base: 4, md: 8 }} mt={12}>
-                {/* Phone */}
                 <HStack spacing={4} align="center">
                   <Image
                     src="/icons/phone.svg"
@@ -60,7 +55,6 @@ const Contact = () => {
                   </Link>
                 </HStack>
 
-                {/* Email */}
                 <HStack spacing={4} align="center">
                   <Image
                     src="/icons/mail.svg"
@@ -77,7 +71,6 @@ const Contact = () => {
                   </Link>
                 </HStack>
 
-                {/* Address */}
                 <HStack spacing={4} align="center">
                   <Image
                     src="/icons/pin.svg"
@@ -90,6 +83,7 @@ const Contact = () => {
                     <Link
                       href="https://goo.gl/maps/ih3cZRXhZ4ayWH9GA"
                       target="_blank"
+                      rel="noopener noreferrer"
                       _hover={{ color: "brand.500" }}
                     >
                       <Text fontSize="lg">
@@ -103,7 +97,6 @@ const Contact = () => {
             </Box>
           </Flex>
 
-          {/* Contact Form */}
           <ContactForm />
         </SimpleGrid>
 

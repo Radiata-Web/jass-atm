@@ -1,5 +1,5 @@
-import { Flex, Heading, Box, SimpleGrid, Text, Button } from "@chakra-ui/react"
-import { Image } from "@chakra-ui/next-js"
+import { Flex, Heading, Box, SimpleGrid, Text, Button, Image } from "@chakra-ui/react"
+import { Link as RouterLink } from "react-router-dom"
 
 const Machines = () => {
   return (
@@ -13,21 +13,17 @@ const Machines = () => {
       id="machines"
     >
       <Box>
-        {/* Machines grid */}
         <SimpleGrid
           columns={{ base: 1, md: 2 }}
           spacing={{ base: 2, md: 20 }}
           maxWidth="1600px"
         >
-          {/* Text */}
           <Flex align="center">
             <Box order={{ base: 1, md: 2 }}>
-              {/* About Heading */}
               <Heading as="h2" size="xl" mb={4} fontFamily="Inter">
                 ATM Machines
               </Heading>
 
-              {/* Blurb */}
               <Text color="gray.600" mb={12}>
                 Jass ATM Sales & Service is a family-owned company based in
                 Jacksonville, Florida focused on providing reliable and
@@ -35,7 +31,6 @@ const Machines = () => {
                 grown into one of the largest ATM companies in the Southeast.
               </Text>
 
-              {/* MOBILE VIEW: ATM Logo Grid */}
               <SimpleGrid
                 columns={{ base: 2, md: 2 }}
                 spacing={{ base: 10, md: 20 }}
@@ -45,7 +40,6 @@ const Machines = () => {
                 justifyItems="center"
                 display={{ base: "grid", md: "none" }}
               >
-                {/* Image */}
                 <Image
                   src="/genmega-logo.png"
                   alt="GenMega logo"
@@ -65,13 +59,12 @@ const Machines = () => {
                 />
               </SimpleGrid>
 
-              {/* CTA Button */}
               <Button
-                as="a"
+                as={RouterLink}
+                to="/atms"
                 colorScheme="brand"
                 variant="outline"
                 size="lg"
-                href="/atms"
                 width={{ base: "100%", md: "auto" }}
               >
                 View Machines
@@ -79,7 +72,6 @@ const Machines = () => {
             </Box>
           </Flex>
 
-          {/* DESKTOP VIEW: ATM logo grid*/}
           <SimpleGrid
             columns={{ base: 1, md: 2 }}
             spacing={{ base: 10, md: 20 }}
@@ -89,7 +81,6 @@ const Machines = () => {
             justifyItems="center"
             display={{ base: "none", md: "grid" }}
           >
-            {/* Image */}
             <Image
               src="/genmega-logo.png"
               alt="GenMega logo"

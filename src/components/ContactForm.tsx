@@ -12,49 +12,64 @@ import {
   Text,
   Stack,
   useToast,
+  VisuallyHidden,
 } from "@chakra-ui/react"
+import { useState, type ChangeEvent, type FormEvent, type FocusEvent } from "react"
 
-import { useState } from "react"
+type FormValues = {
+  name: string
+  email: string
+  phone: string
+  message: string
+  "bot-field": string
+}
 
-const initValues = { name: "", email: "", phone: "", message: "" }
-const initState = { values: initValues }
+type FormState = {
+  values: FormValues
+  isLoading?: boolean
+  error?: string
+}
+
+const initValues: FormValues = {
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+  "bot-field": "",
+}
+
+const initState: FormState = { values: initValues }
 
 const ContactForm = () => {
   const toast = useToast()
-  const [state, setState] = useState(initState)
-  const [touched, setTouched] = useState({})
+  const [state, setState] = useState<FormState>(initState)
+  const [touched, setTouched] = useState<Partial<Record<keyof FormValues, boolean>>>({})
   const { values, isLoading, error } = state
 
-  // See if field was touched
-  const onBlur = ({ target }) =>
-    setTouched((prev) => ({ ...prev, [target.name]: true }))
+  const onBlur = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setTouched((prev) => ({ ...prev, [e.target.name]: true }))
 
-  // Handle form input changes
-  const handleChange = ({ target }) =>
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setState((prev) => ({
       ...prev,
       values: {
         ...prev.values,
-        [target.name]: target.value,
+        [e.target.name]: e.target.value,
       },
     }))
 
-  // Handle form submission
-  const onSubmit = async () => {
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault()
     setState((prev) => ({
       ...prev,
       isLoading: true,
+      error: undefined,
     }))
 
     try {
-      // Send form data
       await sendContactForm(values)
-
-      // Reset form
       setTouched({})
       setState(initState)
-
-      // Show success toast
       toast({
         title: "Message sent!",
         description: "We'll get back to you as soon as possible.",
@@ -62,42 +77,61 @@ const ContactForm = () => {
         duration: 5000,
         position: "top",
       })
-    } catch (error) {
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Failed to send message"
       setState((prev) => ({
         ...prev,
         isLoading: false,
-        error: error.message,
+        error: message,
       }))
     }
   }
 
   return (
     <Box
-      mt={{ base: 12, md: 0 }}
-      padding={8}
+      as="form"
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      onSubmit={onSubmit}
+      mt={{ base: 12, lg: 0 }}
+      padding={{ base: 5, sm: 8 }}
       shadow={{ base: "md", md: "xl" }}
       borderRadius="xl"
       borderWidth="1px"
       borderColor="gray.100"
+      w="100%"
+      minW={0}
+      maxW="100%"
     >
-      {/* Heading */}
-      <Heading
-        display={{ base: "block", md: "none" }}
-        as="h3"
-        mb={4}
-      >
+      <input type="hidden" name="form-name" value="contact" />
+
+      <VisuallyHidden>
+        <label>
+          Don&apos;t fill this out if you&apos;re human:
+          <input
+            name="bot-field"
+            value={values["bot-field"]}
+            onChange={handleChange}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </label>
+      </VisuallyHidden>
+
+      <Heading display={{ base: "block", lg: "none" }} as="h3" mb={4}>
         Contact us
       </Heading>
 
-      <SimpleGrid
-        columns={{ base: 1, md: 3 }}
-        spacing={{ base: 4, md: 8 }}
-      >
-        {/* Full Name */}
+      {/* Container-aware columns: stack when the form card is narrow even if the viewport is md+ */}
+      <SimpleGrid minChildWidth="14rem" spacing={{ base: 4, md: 6 }}>
         <FormControl
           id="name"
           isRequired
-          isInvalid={touched.name && !values.name}
+          isInvalid={Boolean(touched.name && !values.name)}
+          minW={0}
         >
           <FormLabel fontWeight="bold">Full Name</FormLabel>
           <Input
@@ -112,11 +146,11 @@ const ContactForm = () => {
           <FormErrorMessage>Please enter your name.</FormErrorMessage>
         </FormControl>
 
-        {/* Email Address */}
         <FormControl
           id="email"
           isRequired
-          isInvalid={touched.email && !values.email}
+          isInvalid={Boolean(touched.email && !values.email)}
+          minW={0}
         >
           <FormLabel fontWeight="bold">Email Address</FormLabel>
           <Input
@@ -128,17 +162,16 @@ const ContactForm = () => {
             onBlur={onBlur}
             errorBorderColor="red.300"
           />
-          {/* Error handling message */}
           <FormErrorMessage>Please enter a valid email.</FormErrorMessage>
         </FormControl>
 
-        {/* Phone Number */}
         <FormControl
           id="phone"
-          isInvalid={
-            (touched.phone && !values.phone) || values.phone.length > 10
-          }
+          isInvalid={Boolean(
+            (touched.phone && !values.phone) || values.phone.length > 10,
+          )}
           isRequired
+          minW={0}
         >
           <FormLabel fontWeight="bold">Phone Number</FormLabel>
           <Input
@@ -156,12 +189,12 @@ const ContactForm = () => {
         </FormControl>
       </SimpleGrid>
 
-      {/* Message */}
       <FormControl
         id="message"
         mt={4}
         isRequired
-        isInvalid={touched.message && !values.message}
+        isInvalid={Boolean(touched.message && !values.message)}
+        minW={0}
       >
         <FormLabel fontWeight="bold">Message</FormLabel>
         <Textarea
@@ -175,47 +208,44 @@ const ContactForm = () => {
         <FormErrorMessage>Please enter a message.</FormErrorMessage>
       </FormControl>
 
-      {/* Submit Button */}
       <Stack
-        spacing={{ base: 4, md: 8 }}
-        direction={{ base: "column", md: "row" }}
+        mt={6}
+        spacing={4}
+        direction={{ base: "column", xl: "row" }}
+        align={{ base: "stretch", xl: "center" }}
       >
         <Button
           type="submit"
-          mt={6}
           colorScheme="brand"
           variant="solid"
           size="lg"
           isDisabled={
             !values.name || !values.email || !values.phone || !values.message
           }
-          width={{ base: "100%", md: "auto" }}
-          isLoading={values.isLoading}
+          width={{ base: "100%", xl: "auto" }}
+          flexShrink={0}
+          isLoading={isLoading}
           loadingText="Submitting"
-          onClick={onSubmit}
         >
           Send message
         </Button>
 
         {!error && (
-          <Box>
+          <Box minW={0}>
             <Text
               color="gray.500"
-              mt={{ base: 0, md: 9 }}
-              textAlign={{ base: "center", md: "left" }}
+              textAlign={{ base: "center", xl: "left" }}
             >
               Your information is not shared with any third parties.
             </Text>
           </Box>
         )}
 
-        {/* Error handling message */}
         {error && (
-          <Box>
+          <Box minW={0}>
             <Text
               color="red.300"
-              mt={{ base: 0, md: 9 }}
-              textAlign={{ base: "center", md: "left" }}
+              textAlign={{ base: "center", xl: "left" }}
             >
               {error}
             </Text>

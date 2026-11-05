@@ -1,38 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Jass ATM
 
-## Getting Started
+Marketing site for Jass ATM Sales & Service (Jacksonville, FL).
 
-First, run the development server:
+## Stack
+
+- **Vite** + **React 18** SPA (React Router)
+- **TypeScript** `^7.0.2`
+- **Chakra UI** v2
+- Hosted on **Netlify** (static `dist/` + Netlify Forms for contact)
+
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+npm install
+npm run dev        # local Vite server
+npm run typecheck  # tsc --noEmit
+npm run build      # typecheck + production build → dist/
+npm run preview    # preview production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Copy `.env.example` to `.env` (or set in Netlify):
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+| Variable | Where | Purpose |
+|---|---|---|
+| `VITE_GA_MEASUREMENT_ID` | Client | GA4 measurement ID |
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Contact submissions use **Netlify Forms** (`name="contact"`). No SMTP / Gmail secrets are stored in the app. Configure form email notifications in the Netlify UI (e.g. to `sales@jassatm.com`).
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Netlify
 
-## Learn More
+`netlify.toml` sets:
 
-To learn more about Next.js, take a look at the following resources:
+- Build: `npm run build` → publish `dist`
+- SPA fallback: `/* → /index.html` (200) so `/atms` deep links work
+- Cache headers for hashed assets and static images
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+A hidden `<form name="contact">` in `index.html` lets Netlify’s build bot detect the form for SPA AJAX posts.
