@@ -1,6 +1,4 @@
-import { Image } from "@chakra-ui/next-js"
-import { Flex, Box, Button, SimpleGrid, Heading, Text } from "@chakra-ui/react"
-import React from "react"
+import { Flex, Box, Button, SimpleGrid, Heading, Text, Image } from "@chakra-ui/react"
 
 const Company = () => {
   return (
@@ -18,33 +16,19 @@ const Company = () => {
         spacing={{ base: 2, md: 20 }}
         maxWidth="1600px"
       >
-        {/* Text */}
-        <Flex
-          align="center"
-          order={{ base: 2, md: 1 }}
-        >
+        <Flex align="center" order={{ base: 2, md: 1 }}>
           <Box>
-            {/* About Heading */}
-            <Heading
-              as="h2"
-              size="xl"
-              mb={4}
-            >
+            <Heading as="h2" size="xl" mb={4}>
               Company
             </Heading>
 
-            {/* Blurb */}
-            <Text
-              color="gray.600"
-              mb={12}
-            >
+            <Text color="gray.600" mb={12}>
               Jass ATM Sales & Service is a family-owned company based in
               Jacksonville, Florida focused on providing reliable and
               customer-forward services. With 20+ years of experience, we have
               grown into one of the largest ATM companies in the Southeast.
             </Text>
 
-            {/* CTA Button */}
             <Button
               as="a"
               colorScheme="brand"
@@ -58,7 +42,6 @@ const Company = () => {
           </Box>
         </Flex>
 
-        {/* Image */}
         <Image
           src="/atm-graffiti-wide.jpg"
           alt="Image: About JASS ATM"

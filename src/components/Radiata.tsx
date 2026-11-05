@@ -1,5 +1,4 @@
-import { Image, Link } from "@chakra-ui/next-js"
-import { Text, Stack } from "@chakra-ui/react"
+import { Text, Stack, Image, Link } from "@chakra-ui/react"
 
 const Radiata = () => {
   return (
@@ -7,6 +6,7 @@ const Radiata = () => {
       href="https://radiataweb.com"
       transition={"all 0.2s ease"}
       target="_blank"
+      rel="noopener noreferrer"
       _hover={{
         textDecoration: "none",
       }}

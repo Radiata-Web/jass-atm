@@ -8,22 +8,62 @@ import {
   Collapse,
   Popover,
   PopoverTrigger,
-  PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
   Heading,
+  Link as ChakraLink,
+  Image,
 } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
-import { Link, Image } from "@chakra-ui/next-js"
-import { scroll } from "framer-motion"
+import { Link as RouterLink } from "react-router-dom"
+import type { ReactNode } from "react"
 
-export default function WithSubnavigation() {
+type NavItem = {
+  label: string
+  href?: string
+  children?: NavItem[]
+}
+
+const NAV_ITEMS: NavItem[] = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/#company" },
+  { label: "Services", href: "/#services" },
+  { label: "ATMs", href: "/atms" },
+]
+
+function AppLink({
+  href,
+  children,
+  ...rest
+}: {
+  href: string
+  children: ReactNode
+} & React.ComponentProps<typeof ChakraLink>) {
+  const isHash = href.includes("#")
+  const isExternal = href.startsWith("http")
+
+  if (isHash || isExternal) {
+    return (
+      <ChakraLink href={href} {...rest}>
+        {children}
+      </ChakraLink>
+    )
+  }
+
+  return (
+    <ChakraLink as={RouterLink} to={href} {...rest}>
+      {children}
+    </ChakraLink>
+  )
+}
+
+export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
     <Box
-      align="center"
+      as="header"
+      textAlign="center"
       h="100%"
       borderBottom={1}
       borderStyle={"solid"}
@@ -35,8 +75,9 @@ export default function WithSubnavigation() {
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4, xl: 2 }}
-        align={"center"}
+        textAlign="center"
         maxWidth="1600px"
+        mx="auto"
       >
         <Flex align="center">
           <Flex
@@ -59,7 +100,7 @@ export default function WithSubnavigation() {
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
             <Flex>
-              <Link
+              <AppLink
                 href="/"
                 _hover={{
                   textDecoration: "none",
@@ -73,6 +114,7 @@ export default function WithSubnavigation() {
                     width={9}
                   />
                   <Heading
+                    as="span"
                     size="md"
                     color="gray.800"
                     display={{ base: "none", md: "block" }}
@@ -80,10 +122,15 @@ export default function WithSubnavigation() {
                     Jass ATM
                   </Heading>
                 </Flex>
-              </Link>
+              </AppLink>
             </Flex>
 
-            <Flex display={{ base: "none", md: "flex" }} ml={10}>
+            <Flex
+              as="nav"
+              aria-label="Primary"
+              display={{ base: "none", md: "flex" }}
+              ml={10}
+            >
               <DesktopNav />
             </Flex>
           </Flex>
@@ -128,7 +175,7 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              <Link
+              <AppLink
                 p={2}
                 href={navItem.href ?? "#"}
                 fontSize={"sm"}
@@ -140,7 +187,7 @@ const DesktopNav = () => {
                 }}
               >
                 {navItem.label}
-              </Link>
+              </AppLink>
             </PopoverTrigger>
           </Popover>
         </Box>
@@ -152,6 +199,8 @@ const DesktopNav = () => {
 const MobileNav = () => {
   return (
     <Stack
+      as="nav"
+      aria-label="Mobile"
       bg={useColorModeValue("white", "gray.800")}
       p={4}
       display={{ md: "none" }}
@@ -163,14 +212,14 @@ const MobileNav = () => {
   )
 }
 
-const MobileNavItem = ({ label, children, href }) => {
+const MobileNavItem = ({ label, children, href }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
+        as={AppLink}
         href={href ?? "#"}
         justify={"space-between"}
         align={"center"}
@@ -197,31 +246,12 @@ const MobileNavItem = ({ label, children, href }) => {
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <AppLink key={child.label} py={2} href={child.href ?? "#"}>
                 {child.label}
-              </Link>
+              </AppLink>
             ))}
         </Stack>
       </Collapse>
     </Stack>
   )
 }
-
-const NAV_ITEMS = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "About",
-    href: "/#company",
-  },
-  {
-    label: "Services",
-    href: "/#services",
-  },
-  {
-    label: "ATMs",
-    href: "/atms",
-  },
-]
